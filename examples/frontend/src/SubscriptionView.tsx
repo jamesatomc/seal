@@ -32,7 +32,7 @@ const FeedsToSubscribe: React.FC<{ suiAddress: string }> = ({ suiAddress }) => {
   const { id } = useParams();
 
   const client = new SealClient({
-    suiClient,
+    suiClient: suiClient as any,
     serverConfigs: getAllowlistedKeyServers('testnet').map((id) => ({
       objectId: id,
       weight: 1,
@@ -221,7 +221,7 @@ const FeedsToSubscribe: React.FC<{ suiAddress: string }> = ({ suiAddress }) => {
       address: suiAddress,
       packageId,
       ttlMin: TTL_MIN,
-      suiClient,
+      suiClient: suiClient as any,
     });
 
     try {

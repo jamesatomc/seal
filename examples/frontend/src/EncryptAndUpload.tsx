@@ -46,7 +46,7 @@ export function WalrusUpload({ policyObject, cap_id, moduleName }: WalrusUploadP
   const packageId = useNetworkVariable('packageId');
   const suiClient = useSuiClient();
   const client = new SealClient({
-    suiClient,
+    suiClient: suiClient as any,
     serverConfigs: getAllowlistedKeyServers('testnet').map((id) => ({
       objectId: id,
       weight: 1,

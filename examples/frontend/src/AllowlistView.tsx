@@ -37,7 +37,7 @@ function constructMoveCall(packageId: string, allowlistId: string): MoveCallCons
 const Feeds: React.FC<{ suiAddress: string }> = ({ suiAddress }) => {
   const suiClient = useSuiClient();
   const client = new SealClient({
-    suiClient,
+    suiClient: suiClient as any,
     serverConfigs: getAllowlistedKeyServers('testnet').map((id) => ({
       objectId: id,
       weight: 1,
@@ -95,7 +95,7 @@ const Feeds: React.FC<{ suiAddress: string }> = ({ suiAddress }) => {
       try {
         const currentSessionKey = await SessionKey.import(
           imported,
-          new SuiClient({ url: getFullnodeUrl('testnet') }),
+          new SuiClient({ url: getFullnodeUrl('testnet') }) as any,
         );
         console.log('loaded currentSessionKey', currentSessionKey);
         if (
@@ -128,7 +128,7 @@ const Feeds: React.FC<{ suiAddress: string }> = ({ suiAddress }) => {
       address: suiAddress,
       packageId,
       ttlMin: TTL_MIN,
-      suiClient,
+      suiClient: suiClient as any,
       mvrName,
     });
 
